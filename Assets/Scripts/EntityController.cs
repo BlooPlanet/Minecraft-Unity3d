@@ -38,7 +38,7 @@ public class EntityController : MonoBehaviour {
             }
         }
         else {
-            moveSpeed = walkSpeed;
+            moveSpeed = walkSpeed;                                                                                                     
             if (_controller.isGrounded) {
                 vy = -0.5f;
                 if (Input.GetKeyDown(KeyCode.Space)) {
