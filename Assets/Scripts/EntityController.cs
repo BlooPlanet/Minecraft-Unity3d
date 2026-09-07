@@ -42,9 +42,9 @@ public class EntityController : MonoBehaviour {
             }
             
             if (Input.GetKey(KeyCode.Space)) {
-                velocityY = 5f;
+                velocityY = 6f;
             }else if (Input.GetKey(KeyCode.LeftShift)) {
-                velocityY = -5f;
+                velocityY = -6f;
             }
         }
         else {
