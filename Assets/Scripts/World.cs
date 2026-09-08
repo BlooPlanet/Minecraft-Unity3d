@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using BlockEngine;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class World : MonoBehaviour {
         
         // Init(randerDist,randerDist);
         // BuildMesh();
-        LoadChunk();
+        StartCoroutine(LoadChunk());
     }
 
     Vector3Int previousChunk;
@@ -30,7 +31,7 @@ public class World : MonoBehaviour {
             Vector3Int currentChunk = player.GetChunkCoord();
             if (currentChunk != previousChunk) {
                 UnloadChunks();
-                LoadChunk();
+                StartCoroutine(LoadChunk());
                 previousChunk = player.GetChunkCoord();
             }
 
@@ -89,7 +90,7 @@ public class World : MonoBehaviour {
         }
     }
     
-    public void LoadChunk() {
+    IEnumerator LoadChunk() {
         Vector3Int playerChunkCoord = player.GetChunkCoord();
         for (int x = -randerDist - 1; x <= randerDist + 1; x++) {
             for (int z = -randerDist - 1; z <= randerDist + 1; z++) {
@@ -100,6 +101,7 @@ public class World : MonoBehaviour {
                     chunk.GenerateBlocks();
                     chunkMap.TryAdd(chunkCoord, chunk);
                     activeChunks.Add(chunk);
+                    yield return null;
                 }
             }
         }
@@ -113,6 +115,7 @@ public class World : MonoBehaviour {
                     chunk.gameObject.SetActive(true);
                     chunk.BuildMesh();
                     Debug.Log(chunk.name);
+                    yield return null;
                 }
                 // if (chunkDictionary.ContainsKey(chunkCoord)) {
                 //     Chunk chunk;

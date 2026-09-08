@@ -73,6 +73,7 @@ namespace BlockEngine {
         }
 
         public void GenerateBlocks() {
+            ClearBlocks();
             for (int x = 0; x < Width; x++) {
                 for (int z = 0; z < Depth; z++) {
                     for (int y = 0; y < Height; y++) {
@@ -82,6 +83,12 @@ namespace BlockEngine {
                         }
                     }
                 }
+            }
+        }
+
+        public void ClearBlocks() {
+            for (int b = 0; b < blockArray.Length; b++) {
+                blockArray[b] = BlockState.None;
             }
         }
 

@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeChunks: []
-  blockMat: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  blockMat: {fileID: 2100000, guid: a1de1060ebbc64206885c468d11c6564, type: 2}
   playerT: {fileID: 6432030050313422428}
   player: {fileID: 6432030050313422431}
 --- !u!4 &1698903604
