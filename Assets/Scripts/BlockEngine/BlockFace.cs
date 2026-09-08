@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BlockEngine {
@@ -51,6 +52,27 @@ namespace BlockEngine {
                 0 + v,1 + v,2 + v,
                 0 + v,2 + v,3 + v
             };
+        }
+
+        public static Vector3Int[] Directions = new[] {
+            Vector3Int.up,
+            Vector3Int.down,
+            Vector3Int.forward,
+            Vector3Int.back,
+            Vector3Int.right,
+            Vector3Int.left
+        };
+
+        public static Vector3[] GetVerts(int index, Vector3Int blockPos) {
+            List<Vector3[]> vertices = new List<Vector3[]>() {
+                TopVertsArray(blockPos),
+                DownVertsArray(blockPos),
+                FrontVertsArray(blockPos),
+                BackVertsArray(blockPos),
+                RightVertsArray(blockPos),
+                LeftVertsArray(blockPos),
+            };
+            return vertices[index];
         }
     }
 }

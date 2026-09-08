@@ -11,12 +11,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1709349-1a96-4784-bb3c-3d8cf3e72c15" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/BlockFace.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/BlockFace.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BlockTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BlockTest.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/BlockState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/BlockState.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Entity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Entity.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/World.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/World.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Minecraft-Unity3d/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Minecraft-Unity3d/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EntityController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EntityController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/BlockFace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/BlockFace.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/Chunk.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/Chunk.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BlockTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BlockTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +33,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BlockEngine/BlockFace.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BlockEngine/BlockState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BlockTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Entity.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/World.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
@@ -121,6 +129,9 @@
       <workItem from="1788773209385" duration="164000" />
       <workItem from="1788773393163" duration="788000" />
       <workItem from="1788781985327" duration="3935000" />
+      <workItem from="1788835189376" duration="5655000" />
+      <workItem from="1788845370236" duration="1772000" />
+      <workItem from="1788848016836" duration="4640000" />
     </task>
     <servers />
   </component>
@@ -152,6 +163,19 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/World.cs</url>
+          <line>64</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/World.cs" containingFunctionPresentation="Method 'GetChunk'">
+            <startOffsets>
+              <option value="2002" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2003" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
