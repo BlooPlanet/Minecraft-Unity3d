@@ -74,5 +74,37 @@ namespace BlockEngine {
             };
             return vertices[index];
         }
+
+        public static Vector2[] GetUV(int x, int y) {
+            int minPixelX = x * 16;
+            int maxPixelX = (x + 1) * 16;
+            
+            int minPixelY = y * 16;
+            int maxPixelY = (y + 1) * 16;
+
+            float minX = minPixelX / 256f;
+            float maxX = maxPixelX / 256f;
+            float maxY = maxPixelY / 256f;
+            float minY = minPixelY / 256f;
+
+            return new[] {
+                new Vector2(minX,minY),
+                new Vector2(maxX,minY),
+                new Vector2(maxX,maxY),
+                new Vector2(minX,maxY),
+                
+            };
+
+        }
+
+        public static Vector2Int GetUvCoordFromBlockID(BlockState blockId) {
+            if (blockId == BlockState.Stone) {
+                return new Vector2Int(1, 15);
+            }else if (blockId == BlockState.Grass) {
+                return new Vector2Int(0, 15);
+            }
+
+            return Vector2Int.zero;
+        }
     }
 }

@@ -283,8 +283,8 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -305,9 +305,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
-  field of view: 60
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -371,8 +371,70 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeChunks: []
   blockMat: {fileID: 2100000, guid: a1de1060ebbc64206885c468d11c6564, type: 2}
+  waterMat: {fileID: 2100000, guid: 8b04601ecc7404de3ac8a5a8ee075af4, type: 2}
   playerT: {fileID: 6432030050313422428}
   player: {fileID: 6432030050313422431}
+  seaLevel: 45
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -1
+      value: -1
+      inSlope: 0.6952497
+      outSlope: 0.6952497
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: -0.25603935
+      value: -0.48276162
+      inSlope: 2.0161932
+      outSlope: 2.0161932
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.11189618
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: -0.044625744
+      value: -0.23197474
+      inSlope: 0.90742886
+      outSlope: 0.90742886
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5023917
+      value: -0.031468272
+      inSlope: 0.93398005
+      outSlope: 0.93398005
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8936702
+      value: 0.22611864
+      inSlope: 2.4298878
+      outSlope: 2.4298878
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 7.2781234
+      outSlope: 7.2781234
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1698903604
 Transform:
   m_ObjectHideFlags: 0

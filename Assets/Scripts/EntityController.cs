@@ -68,7 +68,7 @@ public class EntityController : MonoBehaviour {
         float mouseY = Input.GetAxis("Mouse Y") * 2f;
         
         mouseRotationY += mouseY;
-        mouseRotationY = Mathf.Clamp(mouseRotationY, -80, 90);
+        mouseRotationY = Mathf.Clamp(mouseRotationY, -85, 90);
         
         transform.Rotate(Vector3.up * mouseX);
         pAnchorT.eulerAngles = new Vector3(-mouseRotationY, pAnchorT.transform.eulerAngles.y, 0);

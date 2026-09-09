@@ -11,10 +11,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1709349-1a96-4784-bb3c-3d8cf3e72c15" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/OctaveNoise.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/OctaveNoise.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Minecraft-Unity3d/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Minecraft-Unity3d/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Res/Block.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Res/Block.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/BlockFace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/BlockFace.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/BlockState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/BlockState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/Chunk.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BlockEngine/Chunk.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EntityController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EntityController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/World.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/World.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +35,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BlockEngine/BlockFace.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BlockEngine/BlockState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BlockEngine/OctaveNoise.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BlockTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Entity.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/World.cs" root0="FORCE_HIGHLIGHTING" />
@@ -126,6 +135,9 @@
       <workItem from="1788845370236" duration="1772000" />
       <workItem from="1788848016836" duration="4640000" />
       <workItem from="1788872910764" duration="1153000" />
+      <workItem from="1788926285385" duration="5073000" />
+      <workItem from="1788940736790" duration="1660000" />
+      <workItem from="1788945484705" duration="3544000" />
     </task>
     <servers />
   </component>
@@ -159,13 +171,13 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/World.cs</url>
-          <line>65</line>
+          <line>71</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/World.cs" containingFunctionPresentation="Method 'GetChunk'">
             <startOffsets>
-              <option value="2060" />
+              <option value="2181" />
             </startOffsets>
             <endOffsets>
-              <option value="2061" />
+              <option value="2182" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="4" />

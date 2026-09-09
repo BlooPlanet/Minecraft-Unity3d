@@ -10,9 +10,14 @@ public class World : MonoBehaviour {
     Queue<Chunk> chunkPool = new Queue<Chunk>();
 
     public Material blockMat;
+    public Material waterMat;
+    
     public Transform playerT;
     public Entity player;
-    int randerDist = 1;
+    int randerDist = 8;
+    public int seaLevel = 55;
+
+    public AnimationCurve curve;
 
     public void Start() {
         float half = randerDist * 0.5f * Chunk.Width;
@@ -20,6 +25,7 @@ public class World : MonoBehaviour {
         
         // Init(randerDist,randerDist);
         // BuildMesh();
+        
         StartCoroutine(LoadChunk());
     }
 
@@ -34,7 +40,7 @@ public class World : MonoBehaviour {
                 StartCoroutine(LoadChunk());
                 previousChunk = player.GetChunkCoord();
             }
-
+    
             refreshTime -= 0.5f;
         }
     }
@@ -47,7 +53,7 @@ public class World : MonoBehaviour {
                 chunk.transform.position = coord;
                 chunk.transform.parent = this.transform;
                 
-                chunk.Init(blockMat,this);
+                chunk.Init(blockMat,waterMat,this);
                 chunk.GenerateBlocks();
                 
                 activeChunks.Add(chunk);
@@ -161,7 +167,7 @@ public class World : MonoBehaviour {
             Chunk chunk = new GameObject(coord.ToString()).AddComponent<Chunk>();
             chunk.transform.position = coord;
             chunk.transform.parent = this.transform;
-            chunk.Init(blockMat,this);
+            chunk.Init(blockMat,waterMat,this);
             return chunk;
         }
     }
