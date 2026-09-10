@@ -15,6 +15,115 @@ namespace BlockEngine {
         MeshFilter meshFilter;
         MeshCollider meshCollider;
 
+        public void BuildMesh() {
+            Mesh mesh = new Mesh();
+            mesh.Clear();
+            mesh.subMeshCount = 2;
+
+            meshCollider.sharedMesh = null;
+
+            List<Vector3> vertices = new List<Vector3>();
+            List<int> triangles = new List<int>();
+            List<int> waterTriangles = new List<int>();
+            List<Color> vertexColors = new List<Color>();
+            List<Vector3> normals = new List<Vector3>();
+            
+            for (int x = 0; x < Width; x++) {
+                for (int z = 0; z < Depth; z++) {
+                    for (int y = 0; y < Height; y++) {
+                        Vector3Int blockPos = new Vector3Int(x, y, z);
+                        if (GetBlock(blockPos) != BlockState.None && GetBlock(blockPos) != BlockState.Water) {
+                            Color blockCol = BlockID.GetColor(GetBlock(blockPos));
+                            
+                            for (int i = 0; i < BlockFace.Directions.Length; i++) {
+                                Vector3Int direction = BlockFace.Directions[i];
+                                if (CoordInBound(blockPos + direction)) {
+                                    if (GetBlock(blockPos + direction) == BlockState.None || GetBlock(blockPos + direction) == BlockState.Water) {
+                                        triangles.AddRange(BlockFace.TrianglesArray(vertices.Count));
+                                        vertices.AddRange(BlockFace.GetVerts(i,blockPos));
+                                        
+                                        for (int j = 0; j < 4; j++) {
+                                            vertexColors.Add(blockCol);
+                                        }
+                                        
+                                        for (int j = 0; j < 4; j++) {
+                                            normals.Add(direction);
+                                        }
+                                       
+
+                                    }
+                                }
+                                else {
+                                    Vector3Int worldBlockPos = blockPos + direction + GetCoord();
+                                    if (world.GetBlock(worldBlockPos) == BlockState.None || world.GetBlock(worldBlockPos) == BlockState.Water) {
+                                        triangles.AddRange(BlockFace.TrianglesArray(vertices.Count));
+                                        vertices.AddRange(BlockFace.GetVerts(i,blockPos));
+     
+                                        for (int j = 0; j < 4; j++) {
+                                            vertexColors.Add(blockCol);
+                                        }
+                                        
+                                        for (int j = 0; j < 4; j++) {
+                                            normals.Add(direction);
+                                        }
+                                    }
+                                }
+                               
+                            }
+                        }
+                        
+                        if (GetBlock(blockPos) == BlockState.Water) {
+                            Color blockCol = BlockID.GetColor(GetBlock(blockPos));
+                            
+                            for (int i = 0; i < BlockFace.Directions.Length; i++) {
+                                Vector3Int direction = BlockFace.Directions[i];
+                                if (CoordInBound(blockPos + direction)) {
+                                    if (GetBlock(blockPos + direction) != BlockState.Water && GetBlock(blockPos + direction) == BlockState.None) {
+                                        waterTriangles.AddRange(BlockFace.TrianglesArray(vertices.Count));
+                                        vertices.AddRange(BlockFace.GetVerts(i,blockPos));
+                                        
+                                        for (int j = 0; j < 4; j++) {
+                                            vertexColors.Add(blockCol);
+                                        }
+                                        
+                                        for (int j = 0; j < 4; j++) {
+                                            normals.Add(direction);
+                                        }
+                                    }
+                                }
+                                else {
+                                    Vector3Int worldBlockPos = blockPos + direction + GetCoord();
+                                    if (world.GetBlock(worldBlockPos) != BlockState.Water && world.GetBlock(worldBlockPos) == BlockState.None) {
+                                        waterTriangles.AddRange(BlockFace.TrianglesArray(vertices.Count));
+                                        vertices.AddRange(BlockFace.GetVerts(i,blockPos));
+                                        
+                                        for (int j = 0; j < 4; j++) {
+                                            vertexColors.Add(blockCol);
+                                        }
+                                        
+                                        for (int j = 0; j < 4; j++) {
+                                            normals.Add(direction);
+                                        }
+                                    }
+                                }
+                               
+                            }
+                        }
+                    }
+                }
+            }
+
+            mesh.vertices = vertices.ToArray();
+            mesh.SetTriangles(triangles.ToArray(),0);
+            mesh.SetTriangles(waterTriangles.ToArray(),1);
+            mesh.SetNormals(normals);
+            //mesh.colors = vertexColors.ToArray();
+            
+            
+            meshFilter.mesh = mesh;
+            meshCollider.sharedMesh = mesh;
+        }
+
         public void Init(Material blockMat,Material waterMat, World _world) {
             blockArray = new BlockState[Width * Height * Depth];
             for (int i = 0; i < blockArray.Length; i++) {
@@ -32,84 +141,6 @@ namespace BlockEngine {
             world = _world;
         }
 
-        public void BuildMesh() {
-            Mesh mesh = new Mesh();
-            mesh.Clear();
-            mesh.subMeshCount = 2;
-
-            meshCollider.sharedMesh = null;
-
-            List<Vector3> vertices = new List<Vector3>();
-            List<int> triangles = new List<int>();
-            List<int> waterTriangles = new List<int>();
-            List<Vector2> uvs = new List<Vector2>();
-
-            for (int x = 0; x < Width; x++) {
-                for (int z = 0; z < Depth; z++) {
-                    for (int y = 0; y < Height; y++) {
-                        Vector3Int blockPos = new Vector3Int(x, y, z);
-                        if (GetBlock(blockPos) != BlockState.None && GetBlock(blockPos) != BlockState.Water) {
-
-                            Vector2Int uvCoord = BlockFace.GetUvCoordFromBlockID(GetBlock(blockPos));
-                            for (int i = 0; i < BlockFace.Directions.Length; i++) {
-                                Vector3Int direction = BlockFace.Directions[i];
-                                if (CoordInBound(blockPos + direction)) {
-                                    if (GetBlock(blockPos + direction) == BlockState.None || GetBlock(blockPos + direction) == BlockState.Water) {
-                                        triangles.AddRange(BlockFace.TrianglesArray(vertices.Count));
-                                        vertices.AddRange(BlockFace.GetVerts(i,blockPos));
-                                        uvs.AddRange(BlockFace.GetUV(uvCoord.x,uvCoord.y));
-
-                                    }
-                                }
-                                else {
-                                    Vector3Int worldBlockPos = blockPos + direction + GetCoord();
-                                    if (world.GetBlock(worldBlockPos) == BlockState.None || world.GetBlock(worldBlockPos) == BlockState.Water) {
-                                        triangles.AddRange(BlockFace.TrianglesArray(vertices.Count));
-                                        vertices.AddRange(BlockFace.GetVerts(i,blockPos));
-                                        uvs.AddRange(BlockFace.GetUV(uvCoord.x,uvCoord.y));
-     
-                                    }
-                                }
-                               
-                            }
-                        }
-                        
-                        if (GetBlock(blockPos) == BlockState.Water) {
-                            Vector2Int uvCoord = BlockFace.GetUvCoordFromBlockID(GetBlock(blockPos));
-                            for (int i = 0; i < BlockFace.Directions.Length; i++) {
-                                Vector3Int direction = BlockFace.Directions[i];
-                                if (CoordInBound(blockPos + direction)) {
-                                    if (GetBlock(blockPos + direction) != BlockState.Water && GetBlock(blockPos + direction) == BlockState.None) {
-                                        waterTriangles.AddRange(BlockFace.TrianglesArray(vertices.Count));
-                                        vertices.AddRange(BlockFace.GetVerts(i,blockPos));
-                                        uvs.AddRange(BlockFace.GetUV(uvCoord.x,uvCoord.y));
-                                    }
-                                }
-                                else {
-                                    Vector3Int worldBlockPos = blockPos + direction + GetCoord();
-                                    if (world.GetBlock(worldBlockPos) != BlockState.Water && world.GetBlock(worldBlockPos) == BlockState.None) {
-                                        waterTriangles.AddRange(BlockFace.TrianglesArray(vertices.Count));
-                                        vertices.AddRange(BlockFace.GetVerts(i,blockPos));
-                                        uvs.AddRange(BlockFace.GetUV(uvCoord.x,uvCoord.y));
-                                    }
-                                }
-                               
-                            }
-                        }
-                    }
-                }
-            }
-
-            mesh.vertices = vertices.ToArray();
-            mesh.SetTriangles(triangles.ToArray(),0);
-            mesh.SetTriangles(waterTriangles.ToArray(),1);
-            mesh.uv = uvs.ToArray();
-            mesh.RecalculateNormals();
-            
-            meshFilter.mesh = mesh;
-            meshCollider.sharedMesh = mesh;
-        }
-
         public void GenerateBlocks() {
             ClearBlocks();
             OctaveNoise noise = new OctaveNoise(4, 70, 0.5f, 2f);
@@ -121,7 +152,7 @@ namespace BlockEngine {
                     int amplitude = surfaceLevel + (int)(value * 32);
                     for (int y = 0; y < amplitude; y++) {
                         Vector3Int blockPos = new Vector3Int(x, y, z);
-                        SetBlock(blockPos,BlockState.Stone);
+                        SetBlock(blockPos,BlockState.Solid);
                     }
                 }
             }

@@ -16,7 +16,6 @@ public class EntityController : MonoBehaviour {
     public const float gravityConst = -9.8f;
     float velocityY;
     
-    // Start is called before the first frame update
     void Start() {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -24,8 +23,7 @@ public class EntityController : MonoBehaviour {
         moveSpeed = walkSpeed;
         controller = GetComponent<CharacterController>();
     }
-
-    // Update is called once per frame
+    
     void Update() {
         Vector3 inputDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
         Vector3 moveDir = transform.forward * inputDir.z + transform.right * inputDir.x;

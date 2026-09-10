@@ -97,14 +97,6 @@ namespace BlockEngine {
 
         }
 
-        public static Vector2Int GetUvCoordFromBlockID(BlockState blockId) {
-            if (blockId == BlockState.Stone) {
-                return new Vector2Int(1, 15);
-            }else if (blockId == BlockState.Grass) {
-                return new Vector2Int(0, 15);
-            }
-
-            return Vector2Int.zero;
-        }
+        
     }
 }

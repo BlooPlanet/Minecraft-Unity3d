@@ -11,6 +11,7 @@ public class World : MonoBehaviour {
 
     public Material blockMat;
     public Material waterMat;
+    public Color color;
     
     public Transform playerT;
     public Entity player;
@@ -21,12 +22,13 @@ public class World : MonoBehaviour {
 
     public void Start() {
         float half = randerDist * 0.5f * Chunk.Width;
-        playerT.position = new Vector3(half, 130, half);
+        playerT.position = new Vector3(500, 130, 500);
         
         // Init(randerDist,randerDist);
         // BuildMesh();
         
-        StartCoroutine(LoadChunk());
+        StartCoroutine(LoadChunk(player.GetChunkCoord()));
+        
     }
 
     Vector3Int previousChunk;
@@ -98,6 +100,41 @@ public class World : MonoBehaviour {
     
     IEnumerator LoadChunk() {
         Vector3Int playerChunkCoord = player.GetChunkCoord();
+        for (int x = -randerDist - 1; x <= randerDist + 1; x++) {
+            for (int z = -randerDist - 1; z <= randerDist + 1; z++) {
+                Vector3Int chunkCoord = new Vector3Int(x * Chunk.Width, 0, z * Chunk.Depth) + playerChunkCoord;
+                if (!chunkMap.ContainsKey(chunkCoord)) {
+                    Chunk chunk = SpwanChunk(chunkCoord);
+                    chunk.gameObject.SetActive(false);
+                    chunk.GenerateBlocks();
+                    chunkMap.TryAdd(chunkCoord, chunk);
+                    activeChunks.Add(chunk);
+                    yield return null;
+                }
+            }
+        }
+        
+        for (int x = -randerDist; x <= randerDist; x++) {
+            for (int z = -randerDist; z <= randerDist; z++) {
+                Vector3Int chunkCoord = new Vector3Int(x * Chunk.Width, 0, z * Chunk.Depth) + playerChunkCoord;
+                
+                Chunk chunk = chunkMap[chunkCoord];
+                if (chunk.gameObject.activeSelf == false) {
+                    chunk.gameObject.SetActive(true);
+                    chunk.BuildMesh();
+                    Debug.Log(chunk.name);
+                    yield return null;
+                }
+                // if (chunkDictionary.ContainsKey(chunkCoord)) {
+                //     Chunk chunk;
+                //     chunkDictionary.TryGetValue(chunkCoord, out chunk);
+                //     chunk.gameObject.SetActive(true);
+                // }
+            }
+        }
+    }
+    
+    IEnumerator LoadChunk(Vector3Int playerChunkCoord) {
         for (int x = -randerDist - 1; x <= randerDist + 1; x++) {
             for (int z = -randerDist - 1; z <= randerDist + 1; z++) {
                 Vector3Int chunkCoord = new Vector3Int(x * Chunk.Width, 0, z * Chunk.Depth) + playerChunkCoord;
